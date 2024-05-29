@@ -8,3 +8,4 @@
 - override-responses - приложение с моковыми данными для Google Cgrome Devtools
 - testing-utilites - приложение с примерами тестов различных утилит
 - testing-react - React приложение для тестирования
+- testing-react-jest - React & Jest приложения для тестирования (Контактная форма)
