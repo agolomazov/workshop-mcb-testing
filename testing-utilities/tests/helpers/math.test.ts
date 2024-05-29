@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest';
-import * as math from './math';
+import * as math from '../../src/helpers/math';
 
 describe('Math module', () => {
   describe('sum()', () => {

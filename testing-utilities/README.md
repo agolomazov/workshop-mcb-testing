@@ -52,3 +52,12 @@ npm run test:watch
 ### Получение данных о тестовом покрытии
 npm run coverage
 ```
+
+```ts
+// Мокаем реализацию функции
+const mockedFn = vi.fn(() => 'result');
+
+// Какая-то логика тестирования
+
+expect(mockedFn).toBeCalledTimes(1);
+```

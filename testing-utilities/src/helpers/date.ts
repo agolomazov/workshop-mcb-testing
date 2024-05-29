@@ -1,15 +1,32 @@
-import { MILLISECONDS_IN_SECOND } from '../constants/common';
-
-export function formatSecondsWithSign(seconds: number): string {
-  return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`;
+import { MILLISECONDS_IN_SECOND, SECONDS_IN_HOUR } from '../constants/common';
+export function today() {
+  return new Date();
 }
 
-export function formatSeconds(seconds: number): string {
-  const date = new Date();
+export function tomorrow() {
+  const tomorrow = today();
 
-  date.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECOND);
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const utc = date.toUTCString();
+  return tomorrow;
+}
 
-  return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6);
+export function endOfHour(date: Date) {
+  const endOfHour = new Date(date);
+
+  endOfHour.setTime(
+    endOfHour.getTime() + SECONDS_IN_HOUR * MILLISECONDS_IN_SECOND
+  );
+
+  endOfHour.setMinutes(0, 0, 0);
+
+  return endOfHour;
+}
+
+export function isToday(date: Date) {
+  return date.toDateString() === today().toDateString();
+}
+
+export function toSeconds(milliseconds: number) {
+  return Math.round(milliseconds / MILLISECONDS_IN_SECOND);
 }
