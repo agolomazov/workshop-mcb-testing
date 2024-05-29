@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> Будет отображен errorMessage если мы нажимаем submit и вводим слабый пароль 1`] = `"Password must be at least 8 characters long"`;
+
+exports[`<App /> Будет отображен successMessage если мы нажимаем submit и вводим валидные данные 1`] = `"User Anton created with password 11aaAA##!23"`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useCreateUser() Проверяем установку successMessage 1`] = `"User Anton created with password qweTR123!!##"`;
