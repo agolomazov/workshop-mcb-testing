@@ -9,3 +9,4 @@
 - testing-utilites - приложение с примерами тестов различных утилит
 - testing-react - React приложение для тестирования
 - testing-react-jest - React & Jest приложения для тестирования (Контактная форма)
+- react + vitest + msw - [https://github.com/agolomazov/ws-testing-react](https://github.com/agolomazov/ws-testing-react)
