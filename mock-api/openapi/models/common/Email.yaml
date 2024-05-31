@@ -1,0 +1,7 @@
+title: Email
+x-stoplight:
+  id: jbezl7398u031
+type: string
+description: Электронная почта
+format: email
+x-faker: internet.email

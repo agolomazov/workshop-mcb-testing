@@ -1,0 +1,6 @@
+title: Phone
+x-stoplight:
+  id: ss79ol3ctqsaj
+type: string
+description: Номер телефона (мобильный)
+x-faker: phone.phoneNumber

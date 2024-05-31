@@ -1,0 +1,50 @@
+title: User
+x-stoplight:
+  id: zdh8czu1fsk2t
+x-tags:
+  - user
+type: object
+description: Модель пользователя системы
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Идентификатор пользователя
+    readOnly: true
+  firstName:
+    type: string
+    description: Имя пользователя
+    example: Alan
+    x-faker:
+      name.firstName: null
+  lastName:
+    type: string
+    description: Фамилия пользователя
+    example: Smith
+    x-faker:
+      name.lastName: null
+  age:
+    type: integer
+    description: Возраст
+    minimum: 18
+    maximum: 80
+    format: int32
+  avatar:
+    $ref: ./common/Image.yaml
+    description: |
+      Изображение пользователя
+  mobile:
+    $ref: ./common/Phone.yaml
+    description: Мобильный номер
+  email:
+    $ref: ./common/Email.yaml
+    description: Электронная почта
+  password:
+    type: string
+    description: Пароль пользователя
+    writeOnly: true
+required:
+  - id
+  - firstName
+  - lastName
+  - mobile

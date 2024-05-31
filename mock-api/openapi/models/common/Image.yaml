@@ -1,0 +1,6 @@
+title: Image
+x-stoplight:
+  id: z9jl49ow14rm8
+type: string
+description: Модель изображения
+x-faker: image.people

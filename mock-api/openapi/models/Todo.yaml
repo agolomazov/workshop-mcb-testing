@@ -1,0 +1,23 @@
+title: Todo
+x-stoplight:
+  id: t281drao6ioju
+x-tags:
+  - todo
+type: object
+description: Модель задачи
+properties:
+  id:
+    type: string
+    format: uuid
+    description: ID задачи
+    readOnly: true
+  title:
+    type: string
+    description: Заголовок задачи
+  completed:
+    type: boolean
+    description: Завершена или нет задача
+required:
+  - id
+  - title
+  - completed

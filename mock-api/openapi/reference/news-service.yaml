@@ -1,0 +1,375 @@
+openapi: 3.0.0
+x-json-schema-faker:
+  locale: en
+  min-items: 2
+  max-items: 10
+  optionalsProbability: 0.5
+  resolve-json-path: true
+x-stoplight:
+  id: 5929cwjvolhna
+info:
+  title: news-service
+  version: '1.0'
+  description: Сервис ленты новостей портала МКБ
+  contact:
+    name: Anton Golomazov
+    url: 'https://vk.com/agolomazov'
+    email: golomazov@mcb.ru
+servers:
+  - url: 'http://localhost:3000'
+    description: Local Server
+  - url: 'https://test.news-service.mkb.ru'
+    description: Test Server
+  - url: 'https://preprod.news-service.mkb.ru'
+    description: Preprod Server
+  - url: 'https://prod.news-service.mkb.ru'
+    description: Prod Server
+paths:
+  /news:
+    get:
+      summary: Получение списка новостей
+      tags:
+        - news
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/dto/NewsList.yaml
+        '500':
+          description: Internal Server Error
+      operationId: fetchNews
+      description: Получение списка новостей с пагинацией
+    post:
+      summary: Создание новой новости
+      tags:
+        - news
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/News.yaml
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: createNews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/dto/CreateNews.yaml
+      description: Создание новости
+      security:
+        - jwt: []
+  '/news/{newsId}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: newsId
+        in: path
+        required: true
+        description: ID новости
+    get:
+      summary: Получение новости по ID
+      tags:
+        - news
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/News.yaml
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: fetchNewsById
+      description: Получение новости по ID
+    patch:
+      summary: Обновление полей записи
+      tags:
+        - news
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/News.yaml
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: updateNews
+      description: Обновление новости
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/News.yaml
+        description: Поля для обновления новости
+    delete:
+      summary: Удаление записи
+      tags:
+        - news
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: removeNews
+      description: Удаление новости по ID
+  /news/search:
+    get:
+      summary: Поиск новостей по критериям
+      tags:
+        - news
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/dto/NewsList.yaml
+        '500':
+          description: Internal Server Error
+      operationId: searchNews
+      description: Поиск новостей по параметрам
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: title
+          description: Заголовок новости
+  /tags:
+    get:
+      summary: Получение списка всех тегов
+      tags:
+        - tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../models/Tag.yaml
+        '500':
+          description: Internal Server Error
+      operationId: fetchTags
+      description: Получение списка всех тегов
+    post:
+      summary: Создание тега
+      tags:
+        - tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Tag.yaml
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: createTag
+      description: Создание тега
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Tag.yaml
+      security:
+        - jwt: []
+  '/tags/{tagId}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: tagId
+        in: path
+        required: true
+        description: ID тега
+    delete:
+      summary: Удалить тег
+      tags:
+        - tags
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: removeTag
+      description: Удаление тега по ID
+      security:
+        - jwt: []
+  /users:
+    get:
+      summary: Список пользователей
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/dto/UsersList.yaml
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: fetchUsers
+      description: Список пользователей
+    post:
+      summary: Создать пользователя
+      tags:
+        - users
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User.yaml
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: createUser
+      description: Создание пользователя
+      security:
+        - jwt: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/User.yaml
+  '/users/{userId}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: Получить пользователя по ID
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/User.yaml
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-users-userId
+      description: Получить пользователя по ID
+    put:
+      summary: Обновление данных о пользователе
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      operationId: put-users-userId
+      description: Обновление данных о пользователе
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+    delete:
+      summary: Удаление пользователя
+      description: Удаление пользователя по ID
+      tags:
+        - users
+      responses:
+        '204':
+          description: OK
+      operationId: delete-users-userId
+components:
+  schemas: {}
+  securitySchemes:
+    jwt:
+      name: Authorization
+      type: apiKey
+      in: header
+    name:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID пользователя
+tags:
+  - name: news
+    description: Новости
+  - name: users
+    description: Пользователи
+  - name: tags
+    description: Теги новостей
+security:
+  - jwt: []

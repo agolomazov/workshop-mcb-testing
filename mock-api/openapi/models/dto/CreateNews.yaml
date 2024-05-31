@@ -1,0 +1,35 @@
+title: CreateNews
+x-stoplight:
+  id: kxu2x27x5k4cj
+type: object
+description: Модель для создания новой новости
+x-tags:
+  - News
+properties:
+  title:
+    type: string
+    description: Заголовок новости
+  description:
+    type: string
+    description: Описание новости
+  keywords:
+    type: string
+    description: Ключевые слова
+  fulltext:
+    type: string
+    description: Текст новости
+  published:
+    type: boolean
+    description: Флаг публикации новости
+  picture:
+    type: string
+    format: uri
+    description: Превью картинка
+  tags:
+    type: array
+    description: Список тегов
+    items:
+      type: string
+required:
+  - title
+  - fulltext

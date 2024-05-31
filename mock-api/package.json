@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "api:json": "json-server ./db.json",
-    "api:swagger": "prism mock -d ./petstore.yaml"
+    "api:swagger": "prism mock -d ./petstore.yaml",
+    "api:swagger:contract": "prism mock -d ./openapi/reference/merge-all-service.json"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.39.0",

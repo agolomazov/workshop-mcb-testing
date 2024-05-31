@@ -1,0 +1,58 @@
+title: News
+x-stoplight:
+  id: 6p9pospwbws3x
+x-tags:
+  - news
+type: object
+description: Модель новости
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Идентификатор новости
+    readOnly: true
+  title:
+    type: string
+    description: Заголовок страницы
+  description:
+    type: string
+    description: Описание новости
+  keywords:
+    type: string
+    description: Ключевые слова
+  fulltext:
+    type: string
+    description: Полный текст новости
+  createdAt:
+    type: string
+    format: date-time
+    description: Дата создания
+    readOnly: true
+  updatedAt:
+    type: string
+    format: date-time
+    description: Дата обновления
+    readOnly: true
+  published:
+    type: boolean
+    default: false
+    description: Опубликована ли новость
+  author:
+    $ref: ./User.yaml
+    description: Автор
+  picture:
+    $ref: ./common/Image.yaml
+    description: Картинка новости
+  tags:
+    type: array
+    minItems: 0
+    maxItems: 5
+    description: Список тегов
+    items:
+      $ref: ./Tag.yaml
+required:
+  - id
+  - title
+  - description
+  - keywords
+  - fulltext

@@ -1,0 +1,23 @@
+title: TodoList
+x-stoplight:
+  id: nm3r718z3n531
+type: object
+description: Модель списка задач
+properties:
+  page:
+    type: integer
+    format: int32
+    minimum: 1
+    maximum: 100
+    description: Номер текущей страницы
+  totalCount:
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 1000
+    description: Всего задач
+  items:
+    type: array
+    description: Список задач
+    items:
+      $ref: ../Todo.yaml

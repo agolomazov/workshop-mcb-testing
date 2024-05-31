@@ -1,0 +1,27 @@
+title: NewsList
+x-stoplight:
+  id: 36wacb2vegq85
+type: object
+description: Модель списка новостей с пагинацией
+properties:
+  items:
+    type: array
+    description: Список новостей
+    items:
+      $ref: ../News.yaml
+  totalCount:
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 1000
+    description: Всего элементов
+  page:
+    type: integer
+    minimum: 1
+    maximum: 500
+    format: int32
+    description: Номер текущей страницы
+required:
+  - items
+  - totalCount
+  - page

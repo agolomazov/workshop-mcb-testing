@@ -1,0 +1,21 @@
+title: Tag
+x-stoplight:
+  id: 95gzxuh8tnvsi
+x-tags:
+  - tags
+type: object
+description: Модель тега
+properties:
+  id:
+    type: string
+    format: uuid
+    description: ID тега
+    readOnly: true
+  title:
+    type: string
+    description: Название тега
+    x-faker:
+      word.noun:
+required:
+  - id
+  - title
